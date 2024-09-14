@@ -1,7 +1,7 @@
 import { Item } from './item.js';
 import { isEqual, startOfDay } from "date-fns";
 
-// Define a items object.
+// Define a items object, also responsible for the date persistentce.
 const Items = () => {
     let _items = [];
 
