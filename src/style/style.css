@@ -1,3 +1,68 @@
 body {
     background-color: #f0f0f0;
+    font-family: "Montserrat", sans-serif;
+    color: #0369a1;
+}
+
+#container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    height: 100px;
+    border-bottom: 2px solid #0369a1;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    padding: 20px 0;
+}
+
+aside {
+    width: 200px;
+    border-right: 2px solid #0369a1;
+
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #0369a1;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+    font-family: "Barlow Condensed", sans-serif;
+}
+
+header a {
+    text-decoration: none;
+    color: #0369a1;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside button {
+    background-color: #0369a1;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    padding: 10px;
+    margin: 10px;
+    width: 80px;
+    font-size: large;
+}
+
+aside button:hover {
+    background-color: #f0f0f0;
+    color: #0369a1;
 }
