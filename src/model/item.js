@@ -31,6 +31,11 @@ const Item = (title, description, due, priority, list = "default") => {
         return _created;
     }
 
+    // Return the list of the item.
+    const getList = () => {
+        return _list;
+    }
+
     // Return a item.
     const get = () => {
         return {
@@ -59,7 +64,7 @@ const Item = (title, description, due, priority, list = "default") => {
         _list = properties.list || "default";
     }
 
-    return { getId, getDue, getCompleted, getCreated, get, setCompleted, set }
+    return { getId, getDue, getCompleted, getCreated, getList, get, setCompleted, set }
 }
 
 export default Item;
