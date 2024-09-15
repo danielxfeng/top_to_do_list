@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import flatpickr from "flatpickr";
 
 const itemForm = (controller, type, item = null) => {
     let form = document.createElement("form");
@@ -30,18 +31,17 @@ const itemForm = (controller, type, item = null) => {
     inputDescription.classList.add("item_description");
     inputDescription.setAttribute("name", "description");
     if (type === "update") {
-        inputDescription.setAttribute("value", properties.description);
+        inputDescription.value = properties.description;
     } else {
         inputDescription.setAttribute("placeholder", "Please enter the title");
     }
     form.appendChild(inputDescription);
 
     let inputDue = document.createElement("input");
-    inputDue.setAttribute("type", "text"); 
+    inputDue.setAttribute("type", "text");
     inputDue.setAttribute("name", "due");
-    inputDue.setAttribute("id", `datetime_picker_${id}`);
 
-    flatpickr(`#datetime_picker_${id}`, {
+    flatpickr(inputDue, {
         enableTime: true,
         dateFormat: "d-m-Y H:i",
         defaultDate: properties.due || new Date(),
@@ -86,18 +86,18 @@ const itemForm = (controller, type, item = null) => {
         let inputCompleted = document.createElement("input");
         inputCompleted.setAttribute("type", "checkbox");
         inputCompleted.setAttribute("name", "isCompleted");
-        inputCompleted.setAttribute("checked", priorities.isCompleted);
-        inputCompleted.addEventListener("change", () => controller.updateCompleted(id, inputCompleted.checked));
+        inputCompleted.checked = properties.isCompleted;
+        inputCompleted.addEventListener("change", (e) => controller.updateCompleted(e));
         form.appendChild(inputCompleted);
 
-        updateButton = document.createElement("button");
+        let updateButton = document.createElement("button");
         updateButton.classList.add("update_btn");
         updateButton.setAttribute("type", "submit");
         updateButton.textContent = "Edit";
         updateButton.addEventListener("click", (e) => controller.updateItem(e));
         form.appendChild(updateButton);
 
-        removeButton = document.createElement("button");
+        let removeButton = document.createElement("button");
         removeButton.classList.add("remove_btn");
         removeButton.setAttribute("type", "button");
         removeButton.textContent = "Remove";
@@ -113,7 +113,7 @@ const itemForm = (controller, type, item = null) => {
     }
 
     let div = document.createElement("div");
-    div.setAttribute("id", id);
+    div.setAttribute("id", `item_${id}`);
     div.appendChild(form);
 
     return div;

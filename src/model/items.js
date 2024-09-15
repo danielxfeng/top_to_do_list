@@ -1,5 +1,5 @@
 import { isSameDay } from "date-fns";
-import { Item } from "./item.js";
+import Item from "./item.js";
 
 // A helper function for sorting items by due date.
 function sortByDue(a, b) {
@@ -90,4 +90,4 @@ const Items = () => {
     return { readFromStorage, getToday, getAll, getHistory, getByList, add, remove, updateCompleted, update }
 }
 
-export { Items };
+export default Items;

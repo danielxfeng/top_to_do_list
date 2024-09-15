@@ -50,7 +50,6 @@ const Ui = () => {
         let handler = document.getElementById("section");
         handler.innerHTML = "";
         handler.appendChild(itemsDiv);
-
     }
 
     // Display a message to the user.
@@ -70,10 +69,8 @@ const Ui = () => {
         let dom = document.getElementById("item_id_new");
         dom.setAttribute("id", `item_id_${id}`);
         dom.setAttribute("value", id);
-        dom = document.getElementById("new");
-        dom.setAttribute("id", id);
-        dom = document.getElementById("datetime_picker_new");
-        dom.setAttribute("id", `datetime_picker_${id}`);
+        dom = document.getElementById("item_new");
+        dom.setAttribute("id", `item_${id}`);
     }
 
     return { updateLists, updateItems, removeItem, addItem, displayMsg, addIdToNewItem };

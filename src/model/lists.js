@@ -24,3 +24,5 @@ const Lists = () => {
 
     return { readFromItems, get, addOrUpdate };
 }
+
+export default Lists;

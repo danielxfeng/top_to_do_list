@@ -52,9 +52,9 @@ const Controller = () => {
         let form = e.target;
 
         try {
-            let id = _items.addItem(Item(form.title.value, form.description.value,
-                new Date(form.due.value), form.priority.value, form.list.value));
-            _lists.addOrUpdate(form.list.value);
+            let id = _items.addItem(Item(form.elements["title"].value, form.elements["description"].value,
+                new Date(form.elements["due"].value), form.elements["priority"].value, form.elements["list"].value));
+            _lists.addOrUpdate(form.elements["list"].value);
             ui.addIdToNewItem(id);
             form.reset();
             ui.displayMsg("ok", "Item added successfully.");
@@ -67,14 +67,14 @@ const Controller = () => {
     const updateItem = (e) => {
         e.preventDefault();
         let form = e.target;
-        let id = form.id.value;
+        let id = form.elements['id'].value;;
 
         let properties = {
-            title: form.title.value,
-            description: form.description.value,
-            due: new Date(form.due.value),
-            priority: form.priority.value,
-            list: form.list.value
+            title: form.elements["title"].value,
+            description: form.elements["description"].value,
+            due: new Date(form.elements["due"].value),
+            priority: form.elements["priority"].value,
+            list: form.elements["list"].value
         }
 
         try {
@@ -88,9 +88,9 @@ const Controller = () => {
     // Update the completed status of an item.
     const updateCompleted = (e) => {
         e.preventDefault();
-        let id = e.target.id.value;
+        let id = e.target.form.elements['id'].value;
         try {
-            _items.updateCompleted(id, e.target.isCompleted);
+            _items.updateCompleted(id, e.target.checked);
             ui.displayMsg("ok", "Item updated successfully.");
         } catch (error) {
             ui.displayMsg("err", error);
