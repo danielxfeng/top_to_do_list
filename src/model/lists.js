@@ -1,10 +1,13 @@
 const Lists = () => {
-    let _lists = [];
+    let _lists = ["default"];
 
     // Read lists from items.
     const readFromItems = (items) => {
         const lists = items.map(item => item.get().list);
         _lists = [...new Set(lists)];
+        if (!_lists.includes("default")) {
+            _lists.push("default");
+        }
     }
 
     // Get all lists.
@@ -19,10 +22,5 @@ const Lists = () => {
         }
     }
 
-    // Remove a list.
-    const remove = (list) => {
-        _lists = _lists.filter(l => l !== list);
-    }
-
-    return { readFromItems, get, addOrUpdate, remove };
+    return { readFromItems, get, addOrUpdate };
 }

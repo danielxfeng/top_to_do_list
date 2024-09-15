@@ -1,14 +1,14 @@
-import { startOfDay } from 'date-fns';
+import { v4 as uuidv4 } from 'uuid';
 
 // Define a item object.
 const Item = (title, description, due, priority, list = "default") => {
-    let _id = Math.random().toString(36);
+    let _id = uuidv4();
     let _title = title;
     let _description = description;
     let _due = due;
     let _priority = priority;
     let _list = list;
-    let _created = startOfDay(new Date());
+    let _created = new Date();
     let _completed = false;
 
     // Return the id of the item.

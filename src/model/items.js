@@ -1,6 +1,5 @@
-import { Item } from './item.js';
-import { Lists } from './lists.js';
-import { isEqual, startOfDay } from "date-fns";
+import { isSameDay } from "date-fns";
+import { Item } from "./item.js";
 
 // A helper function for sorting items by due date.
 function sortByDue(a, b) {
@@ -10,34 +9,35 @@ function sortByDue(a, b) {
 // Define a items object, also responsible for the date persistence.
 const Items = () => {
     let _items = [];
-    let _lists = new Lists();
 
     // Read items from local storage.
     const readFromStorage = () => {
         try {
             const items = JSON.parse(localStorage.getItem('items'));
             if (items) {
-                _items = items.map(item => Item(item.title, item.description, startOfDay(new Date(item.due)),
-                    item.priority, item.list, startOfDay(new Date(item.created)), item.completed));
+                _items = items.map(item => Item(item.title, item.description, new Date(item.due),
+                    item.priority, item.list, new Date(item.created), item.completed));
             }
         } catch (error) {
             console.error("Error reading from localStorage", error);
+            raise ("Error reading from localStorage", error);
         }
     }
 
     // Write items to local storage.
     const writeToStorage = () => {
         try {
-            localStorage.setItem('items', JSON.stringify(_items.map(item => item.get())));
+            localStorage.setItem("items", JSON.stringify(_items.map(item => item.get())));
         } catch (error) {
             console.error("Error writing to localStorage", error);
+            raise ("Error writing to localStorage", error);
         }
     }
 
     // Get items whose due date is today and not completed.
     const getToday = () => {
-        const today = startOfDay(new Date());
-        return _items.filter(item => isEqual(item.getDue(), today) && !item.get().completed)
+        const today = new Date();
+        return _items.filter(item => isSameDay(item.getDue(), today) && !item.get().completed)
             .sort((a, b) => a.getCreated().getTime() - b.getCreated().getTime());
     }
 
@@ -59,8 +59,8 @@ const Items = () => {
     // Add an item to the items.
     const add = (item) => {
         _items.push(item);
-        _lists.addOrUpdate(item.getList());
         writeToStorage();
+        return item.getId();
     }
 
     // Remove an item from the items.
@@ -83,12 +83,11 @@ const Items = () => {
         const item = _items.find(item => item.getId() === id);
         if (item) {
             item.set(properties);
-            _lists.addOrUpdate(item.getList());
             writeToStorage();
         }
     }
 
-    readFromStorage();
-    _lists.readFromItems(_items);
-    return { getToday, getAll, getHistory, getByList, add, remove, updateCompleted, update }
+    return { readFromStorage, getToday, getAll, getHistory, getByList, add, remove, updateCompleted, update }
 }
+
+export { Items };
