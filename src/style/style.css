@@ -24,10 +24,11 @@ header {
     margin: 20px;
 }
 
-#msg p {
-    padding: 10px;
+#msg div {
+    padding: 10px 20px;
     border-radius: 10px;
     margin: 0;
+    color: #f0f0f0;
 }
 
 #msg .ok {
@@ -35,7 +36,7 @@ header {
 }
 
 #msg .err {
-    background-color: #fca5a5;
+    background-color: #dc2626;
 }
 
 main {
@@ -74,6 +75,7 @@ aside ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    text-align: center;
 }
 
 aside button {
@@ -91,6 +93,22 @@ aside button {
 aside button:hover {
     background-color: #f0f0f0;
     color: #0369a1;
+    font-weight: bold;
+}
+
+aside h2 {
+    text-align: center;
+    text-shadow: 2px 2px 4px #bebebe, -6px -6px 12px #ffffff;
+}
+
+#menu_lists_ul li {
+    font-weight: bold;
+    text-decoration: underline;
+    text-shadow: 2px 2px 4px #bebebe, -6px -6px 12px #ffffff;
+}
+
+#menu_lists_ul li:hover {
+    text-decoration: none;
 }
 
 footer a {

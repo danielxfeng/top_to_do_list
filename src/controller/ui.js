@@ -62,6 +62,8 @@ const Ui = () => {
         let handler = document.getElementById("msg");
         handler.innerHTML = "";
         handler.appendChild(div);
+
+        setTimeout(() => div.remove(), 3000);
     }
 
     // Fill the returned id to the new added item for future updating or removing.
