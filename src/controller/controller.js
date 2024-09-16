@@ -59,6 +59,7 @@ const Controller = () => {
                 toUtcDateTime(form.elements["due"].value), form.elements["priority"].value, form.elements["list"].value));
             _lists.addOrUpdate(form.elements["list"].value);
             form.reset();
+            getLists();
             ui.displayMsg("ok", "Item added successfully.");
         } catch (error) {
             ui.displayMsg("err", error);
@@ -81,6 +82,7 @@ const Controller = () => {
 
         try {
             _items.update(id, properties);
+            getLists();
             ui.displayMsg("ok", "Item updated successfully.");
         } catch (error) {
             ui.displayMsg("err", error);
@@ -104,6 +106,7 @@ const Controller = () => {
         try {
             _items.remove(id);
             ui.removeItem(id);
+            getLists();
             ui.displayMsg("ok", "Item Removed successfully.");
         } catch (error) {
             ui.displayMsg("err", error);
