@@ -1,3 +1,5 @@
+import { is } from "date-fns/locale";
+
 function toLocalDateTime(dateTime) {
     let year = dateTime.getFullYear();
     let month = String(dateTime.getMonth() + 1).padStart(2, '0');
@@ -88,26 +90,39 @@ const itemForm = (controller, type, item = null) => {
     form.appendChild(dataList);
 
     if (type === "update") {
+        let label = document.createElement("label");
+        label.textContent = "Completed?";
+        label.setAttribute("for", `isCompleted_${id}`);
         let inputCompleted = document.createElement("input");
         inputCompleted.setAttribute("type", "checkbox");
         inputCompleted.setAttribute("name", "isCompleted");
+        inputCompleted.setAttribute("id", `isCompleted_${id}`);
+        inputCompleted.classList.add("is_completed_checkbox");
         inputCompleted.checked = properties.isCompleted;
         inputCompleted.addEventListener("change", (e) => controller.updateCompleted(e));
-        form.appendChild(inputCompleted);
+        let isCompletedDiv = document.createElement("div");
+        isCompletedDiv.classList.add("is_completed_div");
+        isCompletedDiv.appendChild(label);
+        isCompletedDiv.appendChild(inputCompleted);
+        form.appendChild(isCompletedDiv);
 
         let updateButton = document.createElement("button");
         updateButton.classList.add("update_btn");
         updateButton.setAttribute("type", "submit");
         updateButton.textContent = "Edit";
-        form.appendChild(updateButton);
-        form.addEventListener("submit", (e) => controller.updateItem(e));
 
         let removeButton = document.createElement("button");
         removeButton.classList.add("remove_btn");
         removeButton.setAttribute("type", "button");
         removeButton.textContent = "Remove";
         removeButton.addEventListener("click", () => controller.removeItem(id));
-        form.appendChild(removeButton);
+
+        let buttonsDiv = document.createElement("div");
+        buttonsDiv.classList.add("buttons_div");
+        buttonsDiv.appendChild(updateButton);
+        buttonsDiv.appendChild(removeButton);
+        form.appendChild(buttonsDiv);
+        form.addEventListener("submit", (e) => controller.updateItem(e));
     } else {
         let addButton = document.createElement("button");
         addButton.classList.add("add_btn");

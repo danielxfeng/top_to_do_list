@@ -185,6 +185,12 @@ aside h2 {
     outline: none;
 }
 
+.item_form .is_completed_div, .item_form .buttons_div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 footer a {
     text-decoration: underline;
     color: #0369a1;
