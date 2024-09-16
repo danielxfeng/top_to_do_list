@@ -52,10 +52,8 @@ const Controller = () => {
 
     // Add an item.
     const addItem = (e) => {
-        console.log("add item");
         e.preventDefault();
         let form = e.target;
-        console.log(form.elements["title"].value, form.elements["description"].value, form.elements["due"].value, form.elements["priority"].value, form.elements["list"].value);
         try {
             _items.add(Item(form.elements["title"].value, form.elements["description"].value,
                 toUtcDateTime(form.elements["due"].value), form.elements["priority"].value, form.elements["list"].value));

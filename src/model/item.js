@@ -1,15 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
 
 // Define a item object.
-const Item = (title, description, due, priority, list = "default") => {
-    let _id = uuidv4();
+const Item = (title, description, due, priority, list = "default", id = uuidv4(),
+    created = new Date(), completed = false) => {
+    let _id = id;
     let _title = title;
     let _description = description;
     let _due = due;
     let _priority = priority;
     let _list = list;
-    let _created = new Date();
-    let _completed = false;
+    let _created = created;
+    let _completed = completed;
 
     // Return the id of the item.
     const getId = () => {

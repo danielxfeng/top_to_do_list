@@ -49,7 +49,6 @@ const itemForm = (controller, type, item = null) => {
     inputDue.setAttribute("name", "due");
     inputDue.setAttribute("id", `input_due_${id}`);
     let due = properties ? properties.due : new Date();
-    console.log(toLocalDateTime(due));
     inputDue.setAttribute("value", toLocalDateTime(due));
     form.appendChild(inputDue);
 
@@ -97,7 +96,7 @@ const itemForm = (controller, type, item = null) => {
         inputCompleted.setAttribute("name", "isCompleted");
         inputCompleted.setAttribute("id", `isCompleted_${id}`);
         inputCompleted.classList.add("is_completed_checkbox");
-        inputCompleted.checked = properties.isCompleted;
+        inputCompleted.checked = properties.completed;
         inputCompleted.addEventListener("change", (e) => controller.updateCompleted(e));
         let isCompletedDiv = document.createElement("div");
         isCompletedDiv.classList.add("is_completed_div");

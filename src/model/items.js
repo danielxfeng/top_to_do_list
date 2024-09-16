@@ -15,7 +15,7 @@ const Items = () => {
             const items = JSON.parse(localStorage.getItem('items'));
             if (items) {
                 _items = items.map(item => Item(item.title, item.description, new Date(item.due),
-                    item.priority, item.list, new Date(item.created), item.completed));
+                    item.priority, item.list, item.id, new Date(item.created), item.completed));
             }
         } catch (error) {
             console.error("Error reading from localStorage", error);
