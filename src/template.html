@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDoD</title>
+    <title>Fancy ToDo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <h1></h1>
+    <div id="container">
+        <header>
+            <div id="logo">
+                <a href="index.html">
+                    <h1>Fancy ToDo List</h1>
+                </a>
+            </div>
+            <div id="msg"></div>
+        </header>
+        <main>
+            <aside>
+                <div id="menu_btns">
+                    <ul>
+                        <li><button type="button" id="menu_btn_new">New</button></li>
+                        <li><button type="button" id="menu_btn_upcoming">Upcoming</button></li>
+                        <li><button type="button" id="menu_btn_past">Past</button></li>
+                        <li><button type="button" id="menu_btn_all">All</button></li>
+                    </ul>
+                </div>
+                <div id="menu_lists">
+                    <h2>Lists</h2>
+                    <div id="menu_lists_ul"></div>
+                </div>
+            </aside>
+            <section id="section">
+                <div id ="welcome">
+                    <h2>Welcome to Fancy ToDo List!</h2>
+                    <p>Please select a feature from the left panel to get started.</p>
+                    <p>All data is stored locally in your browser. No data is sent to the server. Therefore, you will not be able to access your data from other computers or browsers, and your data will disappear when you clear your browser’s history.</p>
+                    <p>There is no responsive design, so it may look strange on mobile devices.</p>
+                    <p>Currently, there is also no support for notifications.</p>
+                    <p><b>Enjoy!</b></p>
+                    <p></p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 <a href="https://github.com/danielxfeng/top_to_do_list" target="_blank" rel="noopener noreferrer">Fancy ToDo List</a></p>
+            <p>Created by <em>Daniel</em></p>
+        </footer>
+    </div>
 </body>
+
 </html>
