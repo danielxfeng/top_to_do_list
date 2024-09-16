@@ -26,11 +26,6 @@ const Item = (title, description, due, priority, list = "default") => {
         return _completed;
     }
 
-    // Return the created date of the item.
-    const getCreated = () => {
-        return _created;
-    }
-
     // Return the list of the item.
     const getList = () => {
         return _list;
@@ -64,7 +59,7 @@ const Item = (title, description, due, priority, list = "default") => {
         _list = properties.list || "default";
     }
 
-    return { getId, getDue, getCompleted, getCreated, getList, get, setCompleted, set }
+    return { getId, getDue, getCompleted, getList, get, setCompleted, set }
 }
 
 export default Item;

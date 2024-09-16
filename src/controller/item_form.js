@@ -1,6 +1,12 @@
-import { format } from "date-fns";
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+function toLocalDateTime(dateTime) {
+    let year = dateTime.getFullYear();
+    let month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    let day = String(dateTime.getDate()).padStart(2, '0');
+    let hours = String(dateTime.getHours()).padStart(2, '0');
+    let minutes = String(dateTime.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
 
 const itemForm = (controller, type, item = null) => {
     let form = document.createElement("form");
@@ -39,17 +45,12 @@ const itemForm = (controller, type, item = null) => {
     form.appendChild(inputDescription);
 
     let inputDue = document.createElement("input");
-    inputDue.setAttribute("type", "text");
+    inputDue.setAttribute("type", "datetime-local");
     inputDue.setAttribute("name", "due");
     inputDue.setAttribute("id", `input_due_${id}`);
     let due = properties ? properties.due : new Date();
+    inputDue.setAttribute("value", toLocalDateTime(due));
     form.appendChild(inputDue);
-    flatpickr(inputDue, {
-        enableTime: true,
-        dateFormat: "d-m-Y H:i",
-        defaultDate: due,
-        time_24hr: true
-    });
 
     let selectPriority = document.createElement("select");
     selectPriority.setAttribute("name", "priority");
@@ -69,6 +70,7 @@ const itemForm = (controller, type, item = null) => {
     inputList.setAttribute("name", "list");
     inputList.setAttribute("type", "text");
     inputList.setAttribute("id", `input_list_${id}`);
+    inputList.required = true;
     let dataList = document.createElement("datalist");
     dataList.setAttribute("id", `data_lists_${id}`);
     let lists = controller.getLists();
@@ -79,8 +81,9 @@ const itemForm = (controller, type, item = null) => {
         dataList.appendChild(option);
     });
     inputList.setAttribute("list", `data_lists_${id}`);
-    let list = properties ? properties.list : "default";
-    inputList.setAttribute("value", list);
+    if (properties) {
+        inputList.setAttribute("value", properties.list);
+    }
     form.appendChild(inputList);
     form.appendChild(dataList);
 
@@ -117,6 +120,7 @@ const itemForm = (controller, type, item = null) => {
     let div = document.createElement("div");
     div.setAttribute("id", `item_${id}`);
     div.classList.add("item");
+    div.classList.add(`priority_${selectPriority.value}`);
     div.appendChild(form);
 
     return div;

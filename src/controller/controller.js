@@ -3,6 +3,11 @@ import Items from "../model/items.js";
 import Lists from "../model/lists.js";
 import ui from "./ui.js";
 
+function toUtcDateTime(str) {
+    let date = new Date(str);
+    return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+}
+
 // Define a controller object.
 const Controller = () => {
     let _items = Items();
@@ -22,21 +27,21 @@ const Controller = () => {
         return lists;
     }
 
-    // Get today's items.
-    const getToday = () => {
-        let items = _items.getToday();
+    // Get upcoming items.
+    const getUpcoming = () => {
+        let items = _items.getUpcoming();
+        ui.updateItems(controller, items);
+    }
+
+    // Get past items.
+    const getPast = () => {
+        let items = _items.getPast();
         ui.updateItems(controller, items);
     }
 
     // Get all items.
     const getAll = () => {
         let items = _items.getAll();
-        ui.updateItems(controller, items);
-    }
-
-    // Get history items.
-    const getHistory = () => {
-        let items = _items.getHistory();
         ui.updateItems(controller, items);
     }
 
@@ -53,8 +58,8 @@ const Controller = () => {
         let form = e.target;
         console.log(form.elements["title"].value, form.elements["description"].value, form.elements["due"].value, form.elements["priority"].value, form.elements["list"].value);
         try {
-            let id = _items.add(Item(form.elements["title"].value, form.elements["description"].value,
-                new Date(form.elements["due"].value), form.elements["priority"].value, form.elements["list"].value));
+            _items.add(Item(form.elements["title"].value, form.elements["description"].value,
+                toUtcDateTime(form.elements["due"].value), form.elements["priority"].value, form.elements["list"].value));
             _lists.addOrUpdate(form.elements["list"].value);
             form.reset();
             ui.displayMsg("ok", "Item added successfully.");
@@ -72,7 +77,7 @@ const Controller = () => {
         let properties = {
             title: form.elements["title"].value,
             description: form.elements["description"].value,
-            due: new Date(form.elements["due"].value),
+            due: toUtcDateTime(form.elements["due"].value),
             priority: form.elements["priority"].value,
             list: form.elements["list"].value
         }
@@ -108,7 +113,7 @@ const Controller = () => {
         }
     }
 
-    return { getLists, getToday, getAll, getHistory, getByList, addItem, updateItem, updateCompleted, removeItem };
+    return { getLists, getUpcoming, getPast, getAll, getByList, addItem, updateItem, updateCompleted, removeItem };
 }
 
 // The single instance of the controller.

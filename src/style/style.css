@@ -12,6 +12,7 @@ body {
 }
 
 header {
+    flex: none;
     height: 100px;
     border-bottom: 2px solid #0369a1;
     display: flex;
@@ -113,6 +114,10 @@ aside h2 {
     text-decoration: none;
 }
 
+#welcome {
+    padding: 20px;
+}
+
 #items {
     padding: 20px;
     display: flex;
@@ -134,6 +139,18 @@ aside h2 {
     border-radius: 20px;
 }
 
+.priority_low {
+    background-color: #e2e8f0;
+}
+
+.priority_medium {
+    background-color: #f0fdfa;
+}
+
+.priority_high {
+    background-color: #fce7f3;
+}
+
 .item_form {
     display: flex;
     flex-direction: column;
@@ -144,7 +161,7 @@ aside h2 {
 .item_form input, .item_form textarea, .item_form select {
     padding: 5px;
     border: none;
-    background-color: #e2e8f0;
+    background-color: inherit;
     border-bottom: 2px solid #0369a1;
     color: #0369a1;
     width: 100%;
