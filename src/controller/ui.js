@@ -37,7 +37,7 @@ const Ui = () => {
 
     // Remove an item from the section.
     const removeItem = (id) => {
-        let item = document.getElementById(id);
+        let item = document.getElementById(`item_${id}`);
         item.remove();
     }
 
