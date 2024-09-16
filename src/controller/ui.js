@@ -1,4 +1,3 @@
-import Item from "../model/item";
 import ItemForm from "./item_form";
 
 // To handle the user interface of the application
@@ -66,16 +65,7 @@ const Ui = () => {
         setTimeout(() => div.remove(), 3000);
     }
 
-    // Fill the returned id to the new added item for future updating or removing.
-    const addIdToNewItem = (id) => {
-        let dom = document.getElementById("item_id_new");
-        dom.setAttribute("id", `item_id_${id}`);
-        dom.setAttribute("value", id);
-        dom = document.getElementById("item_new");
-        dom.setAttribute("id", `item_${id}`);
-    }
-
-    return { updateLists, updateItems, removeItem, addItem, displayMsg, addIdToNewItem };
+    return { updateLists, updateItems, removeItem, addItem, displayMsg };
 }
 
 const ui = Ui();

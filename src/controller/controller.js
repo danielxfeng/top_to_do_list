@@ -48,14 +48,14 @@ const Controller = () => {
 
     // Add an item.
     const addItem = (e) => {
+        console.log("add item");
         e.preventDefault();
         let form = e.target;
-
+        console.log(form.elements["title"].value, form.elements["description"].value, form.elements["due"].value, form.elements["priority"].value, form.elements["list"].value);
         try {
-            let id = _items.addItem(Item(form.elements["title"].value, form.elements["description"].value,
+            let id = _items.add(Item(form.elements["title"].value, form.elements["description"].value,
                 new Date(form.elements["due"].value), form.elements["priority"].value, form.elements["list"].value));
             _lists.addOrUpdate(form.elements["list"].value);
-            ui.addIdToNewItem(id);
             form.reset();
             ui.displayMsg("ok", "Item added successfully.");
         } catch (error) {
@@ -78,7 +78,7 @@ const Controller = () => {
         }
 
         try {
-            _items.updateItem(id, properties);
+            _items.update(id, properties);
             ui.displayMsg("ok", "Item updated successfully.");
         } catch (error) {
             ui.displayMsg("err", error);
@@ -100,7 +100,7 @@ const Controller = () => {
     // Remove an item.
     const removeItem = (id) => {
         try {
-            _items.removeItem(id);
+            _items.remove(id);
             ui.removeItem(id);
             ui.displayMsg("ok", "Item Removed successfully.");
         } catch (error) {

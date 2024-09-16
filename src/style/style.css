@@ -32,7 +32,7 @@ header {
 }
 
 #msg .ok {
-    background-color: #bbf7d0;
+    background-color: #047857;
 }
 
 #msg .err {
@@ -46,6 +46,7 @@ main {
 }
 
 aside {
+    flex: none;
     width: 200px;
     border-right: 2px solid #0369a1;
 
@@ -104,11 +105,67 @@ aside h2 {
 #menu_lists_ul li {
     font-weight: bold;
     text-decoration: underline;
+    margin: 10px;
     text-shadow: 2px 2px 4px #bebebe, -6px -6px 12px #ffffff;
 }
 
 #menu_lists_ul li:hover {
     text-decoration: none;
+}
+
+#items {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+.item {
+    width: 300px;
+    height: 350px;
+    padding: 10px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e2e8f0;
+    border-radius: 20px;
+}
+
+.item_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.item_form input, .item_form textarea, .item_form select {
+    padding: 5px;
+    border: none;
+    background-color: #e2e8f0;
+    border-bottom: 2px solid #0369a1;
+    color: #0369a1;
+    width: 100%;
+}
+
+.item_title {
+    font-weight: bold;
+}
+
+.item_form button {
+    background-color: #0369a1;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    padding: 5px;
+    width: 70px;
+}
+
+.item_form input:focus, .item_form textarea:focus, .item_form select:focus {
+    outline: none;
 }
 
 footer a {
