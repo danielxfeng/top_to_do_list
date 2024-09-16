@@ -82,6 +82,7 @@ const Controller = () => {
 
         try {
             _items.update(id, properties);
+            _lists.addOrUpdate(form.elements["list"].value);
             getLists();
             ui.displayMsg("ok", "Item updated successfully.");
         } catch (error) {
