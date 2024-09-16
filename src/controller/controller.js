@@ -4,8 +4,7 @@ import Lists from "../model/lists.js";
 import ui from "./ui.js";
 
 function toUtcDateTime(str) {
-    let date = new Date(str);
-    return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+    return new Date(str);
 }
 
 // Define a controller object.

@@ -1,5 +1,3 @@
-import { is } from "date-fns/locale";
-
 function toLocalDateTime(dateTime) {
     let year = dateTime.getFullYear();
     let month = String(dateTime.getMonth() + 1).padStart(2, '0');
@@ -51,6 +49,7 @@ const itemForm = (controller, type, item = null) => {
     inputDue.setAttribute("name", "due");
     inputDue.setAttribute("id", `input_due_${id}`);
     let due = properties ? properties.due : new Date();
+    console.log(toLocalDateTime(due));
     inputDue.setAttribute("value", toLocalDateTime(due));
     form.appendChild(inputDue);
 
